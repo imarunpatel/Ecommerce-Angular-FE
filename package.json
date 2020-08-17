@@ -2,8 +2,8 @@
   "name": "ecommerce-app",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
     "ng": "ng",
+    "heroku-postbuild": "ng build --prod",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -16,12 +16,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "~9.0.1",
-    "@angular/compiler-cli": "~9.0.0",
     "@angular/animations": "~9.0.0",
     "@angular/cdk": "^9.2.4",
+    "@angular/cli": "~9.0.1",
     "@angular/common": "~9.0.0",
     "@angular/compiler": "~9.0.0",
+    "@angular/compiler-cli": "~9.0.0",
     "@angular/core": "~9.0.0",
     "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "~9.0.0",
@@ -34,13 +34,15 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "animate.css": "^4.1.0",
     "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
     "jquery": "^3.5.1",
     "ng-sidebar": "^9.4.2",
+    "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",
