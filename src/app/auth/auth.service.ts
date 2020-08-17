@@ -3,6 +3,11 @@ import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
+// import { environment } form '../../environment'
+
+const BACKEND_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +28,10 @@ export class AuthService {
   public cartLengthListener =  new Subject<any>();
 
 
-  baseUrl = 'http://localhost:8000/api/token/';
-  userUrl = 'http://localhost:8000/api/v1/user';
-
+  // baseUrl = 'http://localhost:8000/api/token/';
+  // userUrl = 'http://localhost:8000/api/v1/user';
+  
+  
 
   constructor(
     private http: HttpClient,
@@ -55,7 +61,7 @@ export class AuthService {
   }
 
   loginUser(username: string, password: string) {
-    const api = `${this.baseUrl}`;
+    const api = BACKEND_URL + '/token/';
     const authData = { username, password };
     return this.http.post(api, authData).subscribe(
       (response: any) => {
@@ -91,7 +97,7 @@ export class AuthService {
 
 
   getCartLength(userId) {
-    const api = `http://localhost:8000/api/v1/cart/userCart/${userId}`;
+    const api = BACKEND_URL + `/v1/cart/userCart/${userId}`;
     return this.http.get(api).subscribe(
       (data: any) => {
         this.cartLengthListener.next(data.length);
@@ -100,7 +106,7 @@ export class AuthService {
   }
 
   getUserProfile(id): Observable<any> {
-    let api = `${this.userUrl}/${id}/`;
+    let api = BACKEND_URL + `/v1/user/${id}/`;
     return this.http.get(api).pipe(
       map((res: Response) => {
         return res || {}
@@ -139,7 +145,7 @@ export class AuthService {
   }
 
   getNewAccessToken(): Observable<any> {
-    const api = `${this.baseUrl}refresh/`;
+    const api = BACKEND_URL + '/token/refresh/';
     const refreshToken = localStorage.getItem('refresh');
     const data = { refresh: refreshToken };
     return this.http.post<any>(api, data)
@@ -183,7 +189,7 @@ export class AuthService {
   }
 
   signUp(formData) {
-    let api = `${this.userUrl}/`
+    let api = BACKEND_URL + '/v1/user/';
     return this.http.post(api, formData);
     
   }
@@ -230,13 +236,13 @@ export class AuthService {
   }
 
   resetPassword(email) {
-    const api = 'http://localhost:8000/api/password_reset/';
+    const api = BACKEND_URL + '/password_reset/';
     return this.http.post(api, email);
   }
 
   confirmPassword(data): Observable<any> {
     console.log(data);
-    const api = 'http://localhost:8000/api/password_reset/confirm/';
+    const api = BACKEND_URL + '/password_reset/confirm/';
     return this.http.post(api, data);
   }
 }
