@@ -1,0 +1,43 @@
+.container {
+    position: relative;
+    /* background-size: cover; */
+    height: 500px;
+    margin-top: 260px;
+    margin-bottom: 60px;
+}
+.product-man img{
+    position: absolute;
+    bottom: 0;
+    left: 9%;
+    z-index: 1;
+}
+.vertical-text span {
+    text-orientation: 150deg;
+    writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-size: 117px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px #e6dfc6;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 0;
+    left: 40%;
+  }
+
+.p-content h2 {
+  font-size: 4.2em;
+  line-height: 100%;
+  font-family: Calisto MT;
+}
+
+.p-content p {
+  font-size: 1.5em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+button {
+  background-color: #131212;
+  color: #ffffff;
+}

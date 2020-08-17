@@ -1,0 +1,105 @@
+mat-card {
+    width: 100%;
+}
+
+mat-spinner {
+  margin-left: 50%;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+    line-height: 2rem;
+}
+
+input {
+    width: 40%;
+    margin-right: auto;
+}
+
+.description h2 {
+    color: #bfc0be;
+}
+.price p {
+    display: inline-block;
+    /* padding: 1%; */
+	font-size: 1rem;
+	margin: 0;
+}
+.description p:nth-child(1) span:nth-child(1){
+	font-size: 0.7rem;
+	color: #353534;
+}
+.description p:nth-child(1) span:nth-child(2){
+	color: rgb(180, 84, 20);
+}
+.description p:nth-child(2) {
+    text-decoration: line-through;
+    font-weight: lighter;
+}
+.description p:nth-child(3) {
+    color: coral;
+    font-weight: bolder;
+}
+
+/* -------------------------slider------------------- */
+
+#featured {
+	max-width: 500px;
+	max-height: 600px;
+	object-fit: cover;
+	cursor: pointer;
+	border: 2px solid black;
+}
+
+.slide-wrapper {
+	max-width: auto;
+	background-color: red;
+	display: flex;
+	min-height: 100px;
+	align-items: center;
+}
+
+#slider {
+	width: auto;
+	display: flex;
+	/* flex-wrap: nowrap; */
+	/* overflow-x: hidden; */
+}
+
+.small-thumbnail {
+    object-fit: cover;
+	max-width: 100px;
+	max-height: 40px;
+	cursor: pointer;
+	margin: 5px;
+	border: 2px solid black;
+}
+.small-thumbnail:hover {
+	opacity: 1;
+}
+.description h4, h1, h2 {
+	margin: 0 0 -5px;
+	
+}
+.description h4 {
+	color: #7c7c7b;
+}
+.description span {
+    color: rgb(116, 114, 114);
+}
+
+.description .orange {
+	color: orange;
+}
+.arrow {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	transition: .3s;
+}
+.arrow:hover {
+	opacity: .5;
+	width: 35px;
+	height: 35px;
+}

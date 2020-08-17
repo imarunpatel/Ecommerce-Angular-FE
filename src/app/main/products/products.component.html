@@ -1,0 +1,40 @@
+<div class="container pt-0 pb-0 mt-0 mb-0">
+    <div class="row pt-5 pb-5">
+        <h1>Latest Products</h1>
+    </div>
+        <div class="row pt-5">
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+                <div class="col-6 col-sm-6 col-md-4 col-xl-3" *ngFor="let product of products">
+                    <mat-card class="product-item">
+                        <img mat-card-image src="http://localhost:8000{{product.product_images}}" alt="Photo of a Shiba Inu">
+                        <mat-card-header>
+                            <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+                            <mat-card-title routerLink="/{{product.slug}}">{{product.product_name}}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <span [ngClass]="{'orange': product.average_review_rating > 0}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+                            <span [ngClass]="{'orange': product.average_review_rating > 1}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+                            <span [ngClass]="{'orange': product.average_review_rating > 2}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+                            <span [ngClass]="{'orange': product.average_review_rating > 3}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+                            <span [ngClass]="{'orange': product.average_review_rating > 4}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span> <br/>
+                        </mat-card-content>
+                        <div class="row" id="pricing">
+                            <p>Rs. {{product.price}}</p> &nbsp;
+                            <p class="line-through">Rs. {{product.price}}</p> &nbsp;
+                            <p>(25% OFF)</p>
+                        </div>
+                        <!-- <div class="row" id="pricing">
+                            <div class="col-sm-6">
+                                <p>Rs. {{product.price}}</p> <br>
+                                <p>Rs. {{product.price}}</p>
+                            </div>
+                        <div class="col-sm-6">
+                            <mat-card-actions class="">
+                                <button mat-raised-button color="accent" (click)="onProductAdded(product)">Add</button>
+                            </mat-card-actions>
+                        </div>
+                        </div> -->
+                    </mat-card>
+                </div>
+            </div>
+</div>

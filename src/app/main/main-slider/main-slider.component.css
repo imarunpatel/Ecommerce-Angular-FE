@@ -1,0 +1,33 @@
+.carousel-caption {
+    position: absolute;
+    top: 200px;
+    text-align: left;
+}
+
+@media (max-width: 700px) {
+    .carousel-caption {
+        top: 20vh;
+    }
+
+}
+/* .carousel-inner{
+    height: 500px;
+    width: 100%;
+    background-color: cadetblue;
+}  */
+.carousel-caption h1 {
+    color: black;
+    font-size: 4em;
+    font-family: 'Galada', cursive;
+}
+.carousel-caption p {
+    font-family: 'Grenze Gotisch';
+    color: #303d58;
+    font-size: 1.5em;
+    margin-top: -5px;
+}
+.animate__animated.animate__backInLeft {
+    --animate-duration: 3s;
+    --animate-delay: 10.9s;
+  }
+

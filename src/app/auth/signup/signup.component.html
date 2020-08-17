@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="login-main">
+        <h3>SignUp</h3>
+      <form class="m-3" [formGroup]="signupForm">
+        <div class="form-group">
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            class="form-control"
+            placeholder="Choose a unique Username"
+            required
+          >
+          <div *ngIf="validationCheck && f.username.invalid" class="alert alert-danger">
+            <div *ngIf="f.username.errors.required">First Name is required.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            id="first_name"
+            type="text"
+            formControlName="first_name"
+            class="form-control"
+            placeholder="First Name"
+            required
+          >
+          <div *ngIf="validationCheck && f.first_name.invalid" class="alert alert-danger">
+            <div *ngIf="f.first_name.errors.required">First Name is required.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="last_name"
+            class="form-control"
+            placeholder="Last Name"
+            required
+          >
+          <div *ngIf="validationCheck && f.last_name.invalid" class="alert alert-danger">
+            <div *ngIf="f.last_name.errors.required">Last Name is required.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            required
+          >
+          <div *ngIf="validationCheck; else elseBlock" class="alert alert-danger">
+            <div *ngIf="f.email.errors.required">Email name is required.</div>
+          </div>
+          <ng-template #elseBlock>
+            <div *ngIf=" f.email.invalid">
+              <p>Email is not valid</p>
+            </div>
+          </ng-template>
+        </div>
+        <div class="for-group">
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="password"
+            required
+          >
+          <div *ngIf="validationCheck && f.password.invalid" class="alert alert-danger">
+            <div *ngIf="f.password.errors.required">Please enter your password.</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 5 char long.</div>
+          </div>
+        </div>
+        <button class="btn btn-info mt-3" (click)="onSignup()">SignUp</button>
+      </form>
+      <br>
+      <div class="l-text"><p class="">Already have an Account ! <a routerLink="../../auth/login">Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>

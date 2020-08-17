@@ -1,0 +1,96 @@
+<!-- sidebar -->
+
+<!-- <ng-sidebar-container>
+  <ng-sidebar #sidebar [(opened)]="_opened" [closeOnClickOutside]="true">
+    <p>Sidebar contents</p>
+  </ng-sidebar>
+</ng-sidebar-container> -->
+
+<!-- sidebar end -->
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light scrolling-navbar" [ngClass]="{'changeColor' : changeNavbarColor}">
+  <div class="container">
+ 
+    <a>
+      <span  class="navbar-toggler-icon"></span>
+    </a>
+    &nbsp; &nbsp;
+    <!-- Brand -->
+    <a class="navbar-brand" routerLink="/">
+      <strong>BUY</strong>
+    </a>
+
+    <!-- Collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Left -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']" routerLinkActive="active" >Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item" style="color: white;">
+          <a class="nav-link" href="#">Electronics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">TV & Appliances</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Men</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Women</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Baby & Kids</a>
+        </li>
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item" *ngIf="userIsAuthenticated">
+          <a class="nav-link">
+            Hi! {{userName}}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!userIsAuthenticated">
+          <a routerLink="auth/login" class="nav-link">
+            Login
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="userIsAuthenticated">
+          <a (click)="onLogout()" class="nav-link">
+            LogOut
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="onLogout()" class="nav-link">
+            <fa-icon [icon]="faHeart"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <div class="shopping-cart">
+            <!-- [(ngModel)]="user.name" -->
+            <a routerLink="cart"  class="nav-link">
+              <fa-icon [icon]="faShoppingCart"></fa-icon>
+              <div class="cart-counter" *ngIf="cartLenthStatus">
+                {{cartLength}}
+              </div>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+<!-- Navbar -->

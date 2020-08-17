@@ -1,0 +1,21 @@
+footer {
+    background: rgb(48, 46, 61);
+    color: #000;
+}
+h4 {
+    color: rgb(192, 191, 191);
+    font-weight: border;
+    margin-bottom: 0px;
+}
+hr.line-1 {
+    border: 1px solid #3b334dd7;
+    width: 90%;
+    float: left;
+}
+ul {
+    color: rgb(192, 191, 191);
+    text-decoration: none;
+    list-style-type: none;
+    padding-left: 0px;
+    /* color: #3b3a3a; */
+}

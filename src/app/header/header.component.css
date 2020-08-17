@@ -1,0 +1,76 @@
+@media (min-width: 800px) and (max-width: 850px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #1C2331!important;
+    }
+}
+.view,body,html{height:100%}
+/* .navbar{} */
+
+.nav-link {
+    font-size: 1rem;
+    color: rgb(133, 131, 131) !important;
+}
+
+.active {
+    color: #ff7f50 !important;
+}
+
+.page-footer,.top-nav-collapse{
+    background-color:#1C2331
+}@media only screen and (max-width:768px){
+    .navbar{
+        background-color:#1C2331
+    }
+}
+
+
+
+.navbar.scrolled {
+    /* background-color: #1C2331 !important; */
+    background-color: #ffffff;
+    transition: background-color 200ms linear;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+    0 1px 1px 0 rgba(0,0,0,1), 
+    0 1px 3px 0 rgba(0,0,0,1);
+  }
+
+.changeColor{
+    background-color: #1C2331;
+}
+
+ng-sidebar-container {
+    height: 100vh;
+    position: absolute;
+}
+::ng-deep .ng-sidebar {
+    background-color: #f4f4f4;
+    width: 300px;
+    padding: 2em 3em;
+    box-shadow: 0 0 2.5em rgba(85, 85, 85, 0, 0.5);
+}
+
+.shopping-cart {
+    position: relative;
+}
+
+
+.cart-counter {
+    position: absolute;
+    content: attr(data-before);
+    width: 20px;
+    height: 20px;
+    background: #00b1ff;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 12px;
+    top: 0px;
+    right: -12px;
+    -webkit-transition: all 0.2s ease-out 0s;
+    -moz-transition: all 0.2s ease-out 0s;
+    -ms-transition: all 0.2s ease-out 0s;
+    -o-transition: all 0.2s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}

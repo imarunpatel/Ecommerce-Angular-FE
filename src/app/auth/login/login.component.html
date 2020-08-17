@@ -1,0 +1,41 @@
+<div class="container"> 
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div class="row">
+    <div class="login-main" *ngIf="!isLoading">
+      <div class="login-image">
+        <h3>Login Here</h3>
+      </div>
+      <form class="m-3" [formGroup]="loginForm">
+        <div class="form-group">
+          <input
+            id="username"
+            formControlName="username"
+            type="text"
+            class="form-control"
+            placeholder="username or Phone no."
+            [ngClass]="{'is_invalid': !f.username.errors}"
+            required>
+          <div *ngIf="validationCheck && f.username.invalid" class="alert alert-danger">
+            <div *ngIf="f.username.errors.required">username name is required.</div>
+            <div *ngIf="f.username.errors.minlength">Name must be at least 4 char long.</div>
+          </div>
+        </div>
+        <div class="for-group">
+          <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
+          <div *ngIf="f.password.invalid && validationCheck" class="alert alert-danger">
+            <div *ngIf="f.password.errors.required">Password is required.</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 5 char long.</div>
+          </div>
+        </div>
+        <a routerLink="../reset">
+          <p>Forget Password ?</p>
+        </a>
+        <button class="btn btn-info mt-3" (click)="onLogin()">Login</button>
+      </form>
+      <br>
+      <div class="l-text">
+        <p>Not account yet ! <a routerLink="../../auth/signup">SignUp</a></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div *ngIf="isCartEmpty" class="empty_content text-center">
+      <img src="/assets/images/front-img/empty_cart.png" alt="">
+      <h2>Your Cart is Empty.</h2>
+      <p>Add items to it now</p>
+      <button class="btn btn-primary">Shop Now</button>
+    </div>
+  </div>
+  <!-- <ol>
+    <li *ngFor="let product of cartProducts">
+      <p>{{product?.product_name}}</p>
+      <p>{{product?.product_images}}</p>
+    </li>
+  </ol> -->
+  <div class="row">
+    <div class="col-md-8">
+      <div class="cart-item" *ngFor="let product of cartProducts">
+        <!-- <mat-spinner *ngIf="!product"></mat-spinner> -->
+        <div class="row">
+          <div class="col-sm-2 d-flex justify-content-center">
+            <img class="img-thumbnail" src="http://localhost:8000{{product.item?.product_images}}" alt="">
+          </div>
+          <div class="col-sm-4 cart-product-details">
+            <h3>{{product.item?.product_name}}</h3>
+            <div class="stars">
+              <span [ngClass]="{'orange': product.item.average_review_rating > 0}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+              <span [ngClass]="{'orange': product.item.average_review_rating > 1}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+              <span [ngClass]="{'orange': product.item.average_review_rating > 2}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+              <span [ngClass]="{'orange': product.item.average_review_rating > 3}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+              <span [ngClass]="{'orange': product.item.average_review_rating > 4}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
+            </div>
+            <p class="inline">Rs. {{product.item.price}}</p> &nbsp;
+            <p class="inline">Rs. {{product.item.price}}</p> &nbsp;
+            <p class="inline">(25% OFF)</p>
+          </div>
+          <div class="col-sm-3 text-center quantity">
+            <h3>Quantity</h3> <br>
+            <div class="d-flex justify-content-center">
+              <div class="qty-picker">
+                <span (click)="onMinus(product.cartId, product.qty, product.item.id)"  class="prev"></span>
+                <span (click)="onPlus(product.id, product.cartId, product.qty, product.item.id)" class="next"></span>
+                <div id="box">
+                  <span>{{product.qty}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <h3>Price</h3>
+            <p>Rs. {{product.item?.price}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
