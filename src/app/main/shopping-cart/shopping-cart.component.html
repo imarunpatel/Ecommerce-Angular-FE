@@ -19,7 +19,7 @@
         <!-- <mat-spinner *ngIf="!product"></mat-spinner> -->
         <div class="row">
           <div class="col-sm-2 d-flex justify-content-center">
-            <img class="img-thumbnail" src="http://localhost:8000{{product.item?.product_images}}" alt="">
+            <img class="img-thumbnail" src="{{mainUrl}}{{product.item?.product_images}}" alt="">
           </div>
           <div class="col-sm-4 cart-product-details">
             <h3>{{product.item?.product_name}}</h3>

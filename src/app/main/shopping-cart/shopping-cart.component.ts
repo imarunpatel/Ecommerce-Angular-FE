@@ -4,6 +4,7 @@ import {AuthService} from '../../auth/auth.service';
 import {ProductService} from '../../shared/product.service';
 import { Subscription } from 'rxjs';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,6 +21,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
   isCartEmpty: boolean;
   isLoading = false;
   shoppingCartSub: Subscription;
+  mainUrl = environment.mainUrl;
+
 
 
   constructor(

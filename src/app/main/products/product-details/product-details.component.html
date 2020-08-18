@@ -11,7 +11,7 @@
                     <div class="slide-wrapper">
                         <div id="slider">
                             <div *ngFor="let img of productDetails.images">
-                                <img class="small-thumbnail" (click)="onSelect(img)" src="http://localhost:8000{{img.image}}" alt="">
+                                <img class="small-thumbnail" (click)="onSelect(img)" src="{{mainUrl}}{{img.image}}" alt="">
                               </div>
                         </div>
                     </div>
