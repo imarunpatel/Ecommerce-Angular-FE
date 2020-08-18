@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  mainUrl: "http://localhost:8000",
+  mainUrl: "https://webapi-ecommerce.herokuapp.com",
   apiUrl: "https://webapi-ecommerce.herokuapp.com/api"
 };
