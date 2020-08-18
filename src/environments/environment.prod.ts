@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://ecommerce-webapp-api.herokuapp.com/api"
+  apiUrl: "https://webapi-ecommerce.herokuapp.com/api"
 };
