@@ -7,7 +7,7 @@
                 <div class="col-sm-6 bg-info">
 
 
-                    <img id="featured" (click)="onSelect(featuredImg)" src="http://localhost:8000{{featuredImg}}" alt="">
+                    <img id="featured" (click)="onSelect(featuredImg)" src="{{mainUrl}}{{featuredImg}}" alt="">
                     <div class="slide-wrapper">
                         <div id="slider">
                             <div *ngFor="let img of productDetails.images">

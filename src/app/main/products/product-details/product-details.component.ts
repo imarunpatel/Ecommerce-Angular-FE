@@ -6,6 +6,7 @@ import {Product} from '../../../shared/Product';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -21,6 +22,7 @@ export class ProductDetailsComponent implements OnInit {
   productDetails: Product;
   isLoading = true;
   featuredImg = '';
+  mainUrl = environment.mainUrl;
 
   pinForm = this.fb.group({
     pinNumber: ['']
