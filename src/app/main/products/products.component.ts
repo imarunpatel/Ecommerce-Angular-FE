@@ -3,6 +3,8 @@ import { ProductService } from '../../shared/product.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import {Subscription} from 'rxjs';
 import {ShoppingCartService} from '../../shared/shopping-cart.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-products',
@@ -15,6 +17,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   productSub: Subscription;
   faStar = faStar;
   isLoading = false;
+  mainUrl = environment.mainUrl;
 
   constructor(
     private productService: ProductService,
