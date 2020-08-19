@@ -22,6 +22,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
   isLoading = false;
   shoppingCartSub: Subscription;
   mainUrl = environment.mainUrl;
+  totalPrice = 0;
+  noOfProducts = 0;
 
 
 
@@ -65,6 +67,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
       this.productService.getProductById(productIds[ids].product_id).subscribe(
         (data: any) => {
           const newData = {item: data, qty: productIds[ids].qty, cartId: productIds[ids].id}
+          this.totalPrice = this.totalPrice + newData.item.price;
+          this.noOfProducts = this.noOfProducts + 1;
           this.cartProducts.push(newData);
         }
       );

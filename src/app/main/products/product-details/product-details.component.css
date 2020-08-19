@@ -43,18 +43,24 @@ input {
 }
 
 /* -------------------------slider------------------- */
+.featured-box {
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
 
 #featured {
 	max-width: 500px;
 	max-height: 600px;
 	object-fit: cover;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	cursor: pointer;
-	border: 2px solid black;
 }
 
 .slide-wrapper {
 	max-width: auto;
-	background-color: red;
 	display: flex;
 	min-height: 100px;
 	align-items: center;
@@ -63,17 +69,19 @@ input {
 #slider {
 	width: auto;
 	display: flex;
+	margin-left:auto;
+	margin-right: auto;
 	/* flex-wrap: nowrap; */
 	/* overflow-x: hidden; */
 }
 
 .small-thumbnail {
     object-fit: cover;
-	max-width: 100px;
-	max-height: 40px;
+	max-width: 150px;
+	max-height: 60px;
 	cursor: pointer;
 	margin: 5px;
-	border: 2px solid black;
+	border: 1px solid rgb(109, 105, 156);
 }
 .small-thumbnail:hover {
 	opacity: 1;

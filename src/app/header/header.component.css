@@ -9,10 +9,15 @@
 .nav-link {
     font-size: 1rem;
     color: rgb(133, 131, 131) !important;
+    cursor: pointer;
 }
 
 .active {
     color: #ff7f50 !important;
+}
+
+.logout {
+    cursor: pointer;
 }
 
 .page-footer,.top-nav-collapse{

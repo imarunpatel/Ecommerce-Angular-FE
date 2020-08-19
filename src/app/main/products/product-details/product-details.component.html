@@ -4,10 +4,11 @@
             <h1>Details</h1>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
           <div *ngIf="!isLoading" class="row">
-                <div class="col-sm-6 bg-info">
+                <div class="col-md-6 col-sm-12">
 
-
-                    <img id="featured" (click)="onSelect(featuredImg)" src="{{mainUrl}}{{featuredImg}}" alt="">
+                    <div class="featured-box">
+                        <img id="featured" (click)="onSelect(featuredImg)" src="{{mainUrl}}{{featuredImg}}" alt="">
+                    </div>
                     <div class="slide-wrapper">
                         <div id="slider">
                             <div *ngFor="let img of productDetails.images">
@@ -17,7 +18,7 @@
                     </div>
                   
                 </div>
-                <div class="col-sm-6 description">
+                <div class="col-md-6 col-sm-12 description">
                     <h4>{{productDetails?.category}}</h4>
                     <h1>{{productDetails?.product_name}}</h1>
                     <span [ngClass]="{'orange': productDetails.average_review_rating > 0}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>

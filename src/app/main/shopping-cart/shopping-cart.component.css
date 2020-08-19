@@ -112,3 +112,52 @@
 .quantity h3{
   margin: 0;
 }
+
+.checkout-section {
+  width: 100%;
+  height: 250px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.checkout-section h3 {
+  color: rgb(82, 80, 80);
+  text-decoration: uppercase;
+  font-weight: bold;
+  margin-top: 3px;
+  font-size: 1.5em;
+
+}
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
+.product-price {
+  float: left;
+  width: 100%;
+}
+.checkout-section .product-price p {
+  font-size: 1.2em;
+}
+
+.product-delivery-fee {
+  float: left;
+  width: 100%;
+}
+.checkout-section .product-delivery-fee p {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+.total-amount {
+  float: left;
+  width: 100%;
+}
+.checkout-section .total-amount p {
+  font-size: 1.3em;
+  font-weight: bolder;
+}
+
