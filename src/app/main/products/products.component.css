@@ -45,6 +45,9 @@ mat-spinner {
 span {
     color: rgb(116, 114, 114);
 }
+mat-card-title {
+    cursor: pointer;
+}
 mat-card-subtitle {
     margin-bottom: 0px;
 }

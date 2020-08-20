@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <div *ngIf="isCartEmpty" class="empty_content text-center">
       <img src="/assets/images/front-img/empty_cart.png" alt="">
       <h2>Your Cart is Empty.</h2>
@@ -19,7 +20,7 @@
         <!-- <mat-spinner *ngIf="!product"></mat-spinner> -->
         <div class="row">
           <div class="col-sm-2 d-flex justify-content-center">
-            <img class="img-thumbnail" src="{{mainUrl}}{{product.item?.product_images}}" alt="">
+            <img class="img-thumbnail" src="{{product.item?.product_images}}" alt="">
           </div>
           <div class="col-sm-4 cart-product-details">
             <h3>{{product.item?.product_name}}</h3>
@@ -48,12 +49,12 @@
           </div>
           <div class="col-sm-3">
             <h3>Price</h3>
-            <p>Rs. {{product.item?.price}}</p>
+            <p>Rs. {{product.totalPrice}}</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div *ngIf="!isLoading" class="col-md-4">
       <div class="checkout-section">
         <h3>Price Details</h3>
         <hr>

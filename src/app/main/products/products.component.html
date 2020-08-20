@@ -6,7 +6,9 @@
             <mat-spinner *ngIf="isLoading"></mat-spinner>
                 <div class="col-6 col-sm-6 col-md-4 col-xl-3" *ngFor="let product of products">
                     <mat-card class="product-item">
-                        <img mat-card-image src="{{product.product_images}}" alt="Photo of a Shiba Inu">
+                        <a routerLink="/{{product.slug}}">
+                            <img mat-card-image src="{{product.product_images}}" alt="Photo of a Shiba Inu">
+                        </a>
                         <mat-card-header>
                             <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
                             <mat-card-title routerLink="/{{product.slug}}">{{product.product_name}}</mat-card-title>

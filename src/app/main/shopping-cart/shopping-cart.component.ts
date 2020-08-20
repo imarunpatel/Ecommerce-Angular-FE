@@ -4,7 +4,6 @@ import {AuthService} from '../../auth/auth.service';
 import {ProductService} from '../../shared/product.service';
 import { Subscription } from 'rxjs';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -19,9 +18,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
   cartProducts = [];
   cartStatus: string;
   isCartEmpty: boolean;
-  isLoading = false;
+  isLoading = true;
   shoppingCartSub: Subscription;
-  mainUrl = environment.mainUrl;
   totalPrice = 0;
   noOfProducts = 0;
 
@@ -33,7 +31,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
     private productService: ProductService
   ) {
     this.userId = +localStorage.getItem('userId');
-    console.log('userId', this.userId);
   }
 
   ngOnInit(): void {
@@ -66,10 +63,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
     for(const ids in productIds) {
       this.productService.getProductById(productIds[ids].product_id).subscribe(
         (data: any) => {
-          const newData = {item: data, qty: productIds[ids].qty, cartId: productIds[ids].id}
-          this.totalPrice = this.totalPrice + newData.item.price;
+          const priceAccToNoOfProducts = data.price * productIds[ids].qty;
+          const newData = {item: data, qty: productIds[ids].qty, cartId: productIds[ids].id, totalPrice: priceAccToNoOfProducts}
+          this.totalPrice = this.totalPrice + newData.totalPrice;
           this.noOfProducts = this.noOfProducts + 1;
+
           this.cartProducts.push(newData);
+          console.log(newData);
+          this.isLoading = false;
         }
       );
     };

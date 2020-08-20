@@ -53,7 +53,9 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProduct(productSlug).subscribe(
       (data: any) => {
         this.productDetails = { ...data };
-        this.featuredImg = data.images[0].image;
+        if (data.images.length > 0) {
+          this.featuredImg = data.images[0].image;
+        }
         this.isLoading = false;
       }
     );
@@ -77,10 +79,10 @@ export class ProductDetailsComponent implements OnInit {
             }
           });
           if(this.productFound == 1){
-            console.log('product found');
+            // console.log('product found');
             this.cartAddButtonStatus = 'Already Added';
           } else {
-            console.log('product not found');
+            // console.log('product not found');
             this.shoppingCartService.addProductOnCart(id).subscribe(
               (data: any) => {
                 this.authService.getCartLength(userId);
@@ -110,7 +112,7 @@ export class ProductDetailsComponent implements OnInit {
   };
 
   onSelect(img) {
-    console.log('img', img);
+    // console.log('img', img);
     // this.featuredImg = img
     this.productService.getProduct(this.productSlug).subscribe(
       (data:any) => {
