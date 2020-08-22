@@ -18,7 +18,11 @@
             <img class="img-thumbnail" src="{{product.item?.product_images}}" alt="">
           </div>
           <div class="col-sm-4 cart-product-details">
-            <h3>{{product.item?.product_name}}</h3>
+            <h3>
+              <a routerLink="../{{product.item.slug}}">
+                {{product.item?.product_name}}
+              </a>
+            </h3>
             <div class="stars">
               <span [ngClass]="{'orange': product.item.average_review_rating > 0}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>
               <span [ngClass]="{'orange': product.item.average_review_rating > 1}"><fa-icon class="fa-xs" [icon]="faStar"></fa-icon></span>

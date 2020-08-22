@@ -39,11 +39,11 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.gettingCartItemForAuthUser();
+    this.gettingCartItem();
     
   };
 
-  gettingCartItemForAuthUser() {
+  gettingCartItem() {
     if (this.authService.getIsAuth()) {
       // Getting product ids associated with the loggedin user
       this.shoppingCartService.getCartItems(this.userId).subscribe(
