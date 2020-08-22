@@ -42,6 +42,13 @@ export class ShoppingCartService {
     return this.http.put(api, newData);
   };
 
+  deleteCartItem(id): Observable<any> {
+    const api = BACKEND_URL + `/v1/cart/detail/${id}/`;
+
+    console.log('api', api);
+    return this.http.delete(api);
+  }
+
   _cartProducts = [];
   _addProductOnCart(id) {
     this._cartProducts.push(id);
@@ -66,5 +73,7 @@ export class ShoppingCartService {
       this._cartLengthListener.next(this._cartProducts.length);
       console.log('after listener')
   }
+
+  
 
 }

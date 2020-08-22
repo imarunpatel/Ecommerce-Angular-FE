@@ -4,6 +4,7 @@ import {AuthService} from '../../auth/auth.service';
 import {ProductService} from '../../shared/product.service';
 import { Subscription } from 'rxjs';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,15 +14,19 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 export class ShoppingCartComponent implements OnInit, OnDestroy{
 
   faStar = faStar;
+  faTrash = faTrash;
+
   userId: number;
   productIds: [];
   cartProducts = [];
   cartStatus: string;
-  isCartEmpty: boolean;
+  cartIsEmpty: boolean = true;
   isLoading = true;
   shoppingCartSub: Subscription;
   totalPrice = 0;
   noOfProducts = 0;
+  showCartEmptyMessage = false;
+  productQtyProcessing;
 
 
 
@@ -34,26 +39,50 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+    this.gettingCartItemForAuthUser();
+    
+  };
+
+  gettingCartItemForAuthUser() {
     if (this.authService.getIsAuth()) {
       // Getting product ids associated with the loggedin user
       this.shoppingCartService.getCartItems(this.userId).subscribe(
         (data: any) => {
               this.productIds = data;
+              if (data.length > 0) {
+                this.cartIsEmpty = false
+              }
+              else {
+                this.cartIsEmpty = true;
+                this.showCartEmptyMessage = true;
+                this.isLoading = false;
+                this.authService.cartLengthListener.next(0);
+              }
               this.getProducts(this.productIds);
-              this.isCartEmpty = false;
           }
           );
         } else {
           this._getProducts();
+          this.isLoading = false;
+            if (this.shoppingCartService._cartProducts.length > 0) {
+              console.log(this.cartProducts.length)
+              this.cartIsEmpty = false;
+            } else {
+              this.cartIsEmpty = true;
+              this.showCartEmptyMessage = true;
+            }
         }
-  };
+  }
 
-  _getProducts() {
+  _getProducts() { 
     this.shoppingCartService._cartProducts.forEach(element => {
       this.shoppingCartService._getProductById(element).subscribe(
         (data: any) => {
-          const newData = {item: data, qty: 0, cartId: 0}
+          console.log('wao data', data);
+          const priceAccToNoOfProducts = data.price * data.qty;
+          const newData = {item: data, qty: 0, cartId: 0, priceAccToNoOfProducts: priceAccToNoOfProducts}
           this.cartProducts.push(newData);
+
         }
       )
     });
@@ -64,61 +93,84 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
       this.productService.getProductById(productIds[ids].product_id).subscribe(
         (data: any) => {
           const priceAccToNoOfProducts = data.price * productIds[ids].qty;
-          const newData = {item: data, qty: productIds[ids].qty, cartId: productIds[ids].id, totalPrice: priceAccToNoOfProducts}
-          this.totalPrice = this.totalPrice + newData.totalPrice;
+          const newData = {item: data, qty: productIds[ids].qty, cartId: productIds[ids].id, priceAccToNoOfProducts: priceAccToNoOfProducts};
+
+          this.totalPrice = this.totalPrice + newData.priceAccToNoOfProducts;
           this.noOfProducts = this.noOfProducts + 1;
 
           this.cartProducts.push(newData);
-          console.log(newData);
           this.isLoading = false;
         }
       );
     };
   };
 
-  onPlus(localId, cartId, qty, productId) {
+  checkCartId;
+  onPlus(product) {
     if(this.authService.getIsAuth()) {
-      qty = qty + 1;
-      const data = {cartId, qty, productId};
+      this.checkCartId = product.cartId;
+      this.productQtyProcessing = true;
+      product.qty = product.qty + 1;
+      const data = {cartId: product.cartId, qty: product.qty, productId: product.item.id};
+
+      product.priceAccToNoOfProducts = product.priceAccToNoOfProducts + product.item.price;
+      this.totalPrice = this.totalPrice + product.item.price;
+
       this.shoppingCartService.changeCartProductQty(data).subscribe(
         (data: any) => {
-          for(let i=0; i<this.cartProducts.length; i++) {
-            if(this.cartProducts[i].item.id == productId) {
-              this.cartProducts[i].qty = this.cartProducts[i].qty + 1;
-            };
-          };
+              this.productQtyProcessing = false;
+              this.checkCartId = 0;
         }
       );
     } else {
-      for(let i=0; i<this.cartProducts.length; i++) {
-        if(this.cartProducts[i].item.id == productId) {
-          this.cartProducts[i].qty = this.cartProducts[i].qty + 1;
-        };
-      }
+      product.qty = product.qty + 1;
     }
   };
 
-  onMinus(cartId, qty, productId) {
+  onMinus(product) {
     if(this.authService.getIsAuth()) {
-      qty = qty - 1;
-      const data = {cartId, qty, productId};
+      this.checkCartId = product.cartId;
+      this.productQtyProcessing = true;
+      product.qty = product.qty - 1;
+      if (product.qty == 0 ) {
+        this.onDeleteItem(product);
+        product.priceAccToNoOfProducts = product.priceAccToNoOfProducts - product.item.price;
+        this.totalPrice = this.totalPrice - product.item.price;
+        return ;
+      }
+      const data = {cartId: product.cartId, qty: product.qty, productId: product.item.id};
+
+      product.priceAccToNoOfProducts = product.priceAccToNoOfProducts - product.item.price;
+      this.totalPrice = this.totalPrice - product.item.price;
+
       this.shoppingCartService.changeCartProductQty(data).subscribe(
         (data) => {
-          for(let i=0; i<this.cartProducts.length; i++) {
-            if(this.cartProducts[i].item.id == productId) {
-              this.cartProducts[i].qty = this.cartProducts[i].qty - 1;
-            };
-          };
+
+          this.productQtyProcessing = false;
+          this.checkCartId = 0;
         }
       );
     } else {
-        for(let i=0; i<this.cartProducts.length; i++) {
-          if(this.cartProducts[i].item.id == productId) {
-            this.cartProducts[i].qty = this.cartProducts[i].qty - 1;
-          };
-        }
+      product.qty = product.qty + 1;
       }
   };
+
+  onDeleteItem(product) {
+    console.log('product delete', product);
+    console.log('delete', product.item.id);
+    this.shoppingCartService.deleteCartItem(product.cartId).subscribe(
+      () => {
+        this.cartProducts = this.cartProducts.filter(item => item.cartId != product.cartId);
+        console.log('new length', this.cartProducts.length);
+        if (this.cartProducts.length == 0) {
+          this.cartIsEmpty = true;
+          this.showCartEmptyMessage = true;
+          this.authService.cartLengthListener.next(0);
+        }
+      }
+    );
+
+  }
 
   ngOnDestroy() {
     // this.shoppingCartSub.unsubscribe();

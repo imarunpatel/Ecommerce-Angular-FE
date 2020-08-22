@@ -1,20 +1,15 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <div *ngIf="isCartEmpty" class="empty_content text-center">
+    <div *ngIf="showCartEmptyMessage" class="empty_content text-center mb-5">
       <img src="/assets/images/front-img/empty_cart.png" alt="">
       <h2>Your Cart is Empty.</h2>
       <p>Add items to it now</p>
-      <button class="btn btn-primary">Shop Now</button>
+      <button class="btn btn-primary" routerLink="/">Shop Now</button>
     </div>
   </div>
-  <!-- <ol>
-    <li *ngFor="let product of cartProducts">
-      <p>{{product?.product_name}}</p>
-      <p>{{product?.product_images}}</p>
-    </li>
-  </ol> -->
-  <div class="row">
+
+  <div class="row mb-5" *ngIf="!isLoading && !cartIsEmpty">
     <div class="col-md-8">
       <div class="cart-item" *ngFor="let product of cartProducts">
         <!-- <mat-spinner *ngIf="!product"></mat-spinner> -->
@@ -39,17 +34,24 @@
             <h3>Quantity</h3> <br>
             <div class="d-flex justify-content-center">
               <div class="qty-picker">
-                <span (click)="onMinus(product.cartId, product.qty, product.item.id)"  class="prev"></span>
-                <span (click)="onPlus(product.id, product.cartId, product.qty, product.item.id)" class="next"></span>
-                <div id="box">
-                  <span>{{product.qty}}</span>
+
+                <div *ngIf="productQtyProcessing && product.cartId==checkCartId" class="spinner-border spinner-border-sm" role="status">
                 </div>
+                <span (click)="onMinus(product)"  class="prev"></span>
+                <span (click)="onPlus(product)" class="next"></span>
+                <div id="box">
+                  <span *ngIf="product.cartId != checkCartId">{{product.qty}}</span>
+                </div>
+
               </div>
             </div>
           </div>
           <div class="col-sm-3">
             <h3>Price</h3>
-            <p>Rs. {{product.totalPrice}}</p>
+            <p>Rs. {{product.priceAccToNoOfProducts}}</p>
+            <!-- <div class="deleteIcon">
+              <fa-icon (click)="onDeleteItem(product)" class="fa-xs" [icon]="faTrash"></fa-icon>
+            </div> -->
           </div>
         </div>
       </div>
@@ -76,4 +78,7 @@
       </div>
     </div>
   </div>
+
+  
+
 </div>

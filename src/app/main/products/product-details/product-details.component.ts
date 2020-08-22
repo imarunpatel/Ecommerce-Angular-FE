@@ -23,6 +23,7 @@ export class ProductDetailsComponent implements OnInit {
   isLoading = true;
   featuredImg = '';
   mainUrl = environment.mainUrl;
+  cartButtonProcessing;
 
   pinForm = this.fb.group({
     pinNumber: ['']
@@ -69,10 +70,12 @@ export class ProductDetailsComponent implements OnInit {
   cartAddButtonStatus = 'Add to Bag';
   onProductAdded() {
     if(this.authService.getIsAuth()) {
+      this.cartButtonProcessing = true;
       const userId = +localStorage.getItem('userId');
       const id = this.productDetails.id;
       this.shoppingCartService.getCartItems(userId).subscribe(
         (data: any) => {
+          
           data.forEach(element => {
             if(element.product_id == id) {
               this.productFound = 1;
@@ -81,18 +84,21 @@ export class ProductDetailsComponent implements OnInit {
           if(this.productFound == 1){
             // console.log('product found');
             this.cartAddButtonStatus = 'Already Added';
+            this.cartButtonProcessing = false;
           } else {
             // console.log('product not found');
             this.shoppingCartService.addProductOnCart(id).subscribe(
               (data: any) => {
                 this.authService.getCartLength(userId);
                 this.cartAddButtonStatus = 'Added';
+                this.cartButtonProcessing = false;
               }
             );
           };
         }
       );
     } else {
+      this.cartButtonProcessing = true;
       const id = this.productDetails.id;
       let cartStatus = 0;
       const cartItemsId = this.shoppingCartService._getCartItems();
@@ -103,9 +109,11 @@ export class ProductDetailsComponent implements OnInit {
       });
       if(cartStatus == 1) {
         this.cartAddButtonStatus = 'Already Added';
+        this.cartButtonProcessing = false;
       } else {
         this.shoppingCartService._addProductOnCart(id);
         this.cartAddButtonStatus = 'Added';
+        this.cartButtonProcessing = false;
         this.shoppingCartService._getCartLengthListener();
       };
     };

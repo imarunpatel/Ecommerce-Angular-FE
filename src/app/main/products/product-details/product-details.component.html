@@ -33,7 +33,14 @@
                         <p class="">( 40% OFF )</p> <br>
                     </div>
                     <p>- {{productDetails?.description}}</p>
-                    <button class="btn btn-primary" (click)="onProductAdded()">{{cartAddButtonStatus}}</button> &nbsp;
+                    <!-- <div  class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div> -->
+                    <button *ngIf="cartButtonProcessing" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Adding...
+                    </button>
+                    <button *ngIf="!cartButtonProcessing" class="btn btn-primary" (click)="onProductAdded()">{{cartAddButtonStatus}}</button> &nbsp;
                     <button class="btn btn-default border">Add to Wishlist</button>
                     <h3 class="pt-4">DELIVERY OPTIONS</h3>
                     <form class="form-inline" [formGroup]="pinForm">
