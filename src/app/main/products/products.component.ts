@@ -38,9 +38,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   onProductAdded(product) {
     const id = product.id;
     this.shoppingCartService.addProductOnCart(id).subscribe(
-      (data: any) => {
-        console.log(data);
-      }
+      () => {}
     );
   }
 

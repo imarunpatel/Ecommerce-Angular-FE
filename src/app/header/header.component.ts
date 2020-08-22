@@ -85,7 +85,6 @@ export class HeaderComponent implements OnInit {
     if(!localStorage.getItem('userId')) {
       this.shoppingCartService._cartLengthListener.subscribe(
         data => {
-          console.log('listener data', data);
           // this.cartLenthStatus = true;
           this.cartLength = data;
         }
@@ -111,7 +110,6 @@ export class HeaderComponent implements OnInit {
       (data) => {
         this.cartLength = data.length;
         // this.cartLenthStatus = true;
-        console.log('get cart length', this.cartLength)
       }
     );
   }

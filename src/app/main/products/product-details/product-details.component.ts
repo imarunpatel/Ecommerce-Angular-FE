@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/shared/product.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import {Product} from '../../../shared/Product';
 import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -41,13 +41,6 @@ export class ProductDetailsComponent implements OnInit {
     this.isLoading = true;
     this.productSlug = this.route.snapshot.paramMap.get('slug');
     this.getProduct(this.productSlug);
-
-    // if(!this.productDetails.product_images) {
-    //   this.featuredImg = this.productDetails.product_images;
-    //   console.log(this.featuredImg);
-    // } else {
-    //   this.featuredImg = null;
-    // }
   }
 
   getProduct(productSlug) {
@@ -82,11 +75,9 @@ export class ProductDetailsComponent implements OnInit {
             }
           });
           if(this.productFound == 1){
-            // console.log('product found');
             this.cartAddButtonStatus = 'Already Added';
             this.cartButtonProcessing = false;
           } else {
-            // console.log('product not found');
             this.shoppingCartService.addProductOnCart(id).subscribe(
               (data: any) => {
                 this.authService.getCartLength(userId);
@@ -120,15 +111,12 @@ export class ProductDetailsComponent implements OnInit {
   };
 
   onSelect(img) {
-    // console.log('img', img);
-    // this.featuredImg = img
     this.productService.getProduct(this.productSlug).subscribe(
       (data:any) => {
         data.images.forEach(element => {
           if(img.image == element.image) {
             this.featuredImg = element.image;
           }
-          // console.log('image: ', element.image)
         });
       }
     );

@@ -179,11 +179,11 @@ export class AuthService {
     if (error.error instanceof ErrorEvent) {
       // client side error
       msg = error.error.message;
-      console.log('client side error');
+      // console.log('client side error');
     } else {
       // server-side error
       msg = `Error Code: ${error.status}\n Message: ${error.message}`;
-      console.log('server side error');
+      // console.log('server side error');
     }
     return throwError(msg);
   }
@@ -241,7 +241,7 @@ export class AuthService {
   }
 
   confirmPassword(data): Observable<any> {
-    console.log(data);
+    // console.log(data);
     const api = BACKEND_URL + '/password_reset/confirm/';
     return this.http.post(api, data);
   }

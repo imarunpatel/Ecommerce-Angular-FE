@@ -65,7 +65,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
           this._getProducts();
           this.isLoading = false;
             if (this.shoppingCartService._cartProducts.length > 0) {
-              console.log(this.cartProducts.length)
               this.cartIsEmpty = false;
             } else {
               this.cartIsEmpty = true;
@@ -78,9 +77,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
     this.shoppingCartService._cartProducts.forEach(element => {
       this.shoppingCartService._getProductById(element).subscribe(
         (data: any) => {
-          console.log('wao data', data);
-          const priceAccToNoOfProducts = data.price * data.qty;
-          const newData = {item: data, qty: 0, cartId: 0, priceAccToNoOfProducts: priceAccToNoOfProducts}
+          const priceAccToNoOfProducts = data.price * 1;
+          this.totalPrice = this.totalPrice + data.price;
+          const newData = {item: data, qty: 1, cartId: 0, priceAccToNoOfProducts: priceAccToNoOfProducts}
           this.cartProducts.push(newData);
 
         }
@@ -124,6 +123,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
       );
     } else {
       product.qty = product.qty + 1;
+      product.priceAccToNoOfProducts = product.priceAccToNoOfProducts + product.item.price;
+      this.totalPrice = this.totalPrice + product.item.price;
     }
   };
 
@@ -151,17 +152,24 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
         }
       );
     } else {
-      product.qty = product.qty + 1;
+      product.qty = product.qty - 1;
+      if (product.qty == 0 ) {
+        this.cartProducts = this.cartProducts.filter(item => item.qty != product.qty);
+      }
+      if (this.cartProducts.length == 0) {
+        this.cartIsEmpty = true;
+        this.showCartEmptyMessage = true;
+        this.authService.cartLengthListener.next(0);
+      }
+      product.priceAccToNoOfProducts = product.priceAccToNoOfProducts - product.item.price;
+      this.totalPrice = this.totalPrice - product.item.price;
       }
   };
 
   onDeleteItem(product) {
-    console.log('product delete', product);
-    console.log('delete', product.item.id);
     this.shoppingCartService.deleteCartItem(product.cartId).subscribe(
       () => {
         this.cartProducts = this.cartProducts.filter(item => item.cartId != product.cartId);
-        console.log('new length', this.cartProducts.length);
         if (this.cartProducts.length == 0) {
           this.cartIsEmpty = true;
           this.showCartEmptyMessage = true;
