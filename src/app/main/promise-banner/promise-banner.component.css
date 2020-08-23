@@ -1,3 +1,16 @@
 h3 {
     margin-bottom: -6px;
 }
+
+
+
+@media screen and (max-width: 576px) {
+    .container-fluid h3 {
+        display: none;
+    }
+
+    .container-fluid p {
+        display: none;
+    }
+  
+}

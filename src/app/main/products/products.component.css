@@ -84,3 +84,10 @@ mat-card-actions {
     color: #293b23;
 }
 
+
+@media screen and (max-width: 576px) and (min-width: 370px) {
+    #single-product { 
+        background-color: red;
+        padding-left: 20%
+    }
+}

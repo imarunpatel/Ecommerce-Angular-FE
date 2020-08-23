@@ -3,6 +3,8 @@ h1 {
     margin: auto;
     font-weight: bolder;
     font-family: Calisto MT;
+} @media screen and (max-width: 400px) {
+    h1 { font-size: 1.5rem;}
 }
 .card {
     border: 0;

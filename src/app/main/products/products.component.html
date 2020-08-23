@@ -1,10 +1,10 @@
 <div class="container pt-0 pb-0 mt-0 mb-0">
-    <div class="row pt-5 pb-5">
+    <div class="row pt-sm-5 pb-sm-5">
         <h1>Latest Products</h1>
     </div>
-        <div class="row pt-5">
+        <div class="row pt-5 d-flex justify-content-center">
             <mat-spinner *ngIf="isLoading"></mat-spinner>
-                <div class="col-6 col-sm-6 col-md-4 col-xl-3" *ngFor="let product of products">
+                <div id="single-product" class="col-12 col-sm-6 col-md-4 col-xl-3 mb-2" *ngFor="let product of products">
                     <mat-card class="product-item">
                         <a routerLink="/{{product.slug}}">
                             <img mat-card-image src="{{product.product_images}}" alt="Photo of a Shiba Inu">
