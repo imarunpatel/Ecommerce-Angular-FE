@@ -7,16 +7,15 @@
                 <div class="col-md-6 col-sm-12">
 
                     <div class="featured-box">
-                        <img id="featured" (click)="onSelect(featuredImg)" src="{{featuredImg}}" alt="">
+                        <img id="featured" (click)="onSelect(featuredImg)" src="http://localhost:8000{{featuredImg}}" alt="">
                     </div>
                     <div class="slide-wrapper">
                         <div id="slider">
                             <div *ngFor="let img of productDetails.images">
-                                <img class="small-thumbnail" (click)="onSelect(img)" src="{{img.image}}" alt="">
+                                <img class="small-thumbnail" (click)="onSelect(img)" src="http://localhost:8000{{img.image}}" alt="">
                               </div>
                         </div>
                     </div>
-                  
                 </div>
                 <div class="col-md-6 col-sm-12 description">
                     <h4>{{productDetails?.category}}</h4>

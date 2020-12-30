@@ -7,7 +7,7 @@
                 <div id="single-product" class="col-12 col-sm-6 col-md-4 col-xl-3 mb-2" *ngFor="let product of products">
                     <mat-card class="product-item">
                         <a routerLink="/{{product.slug}}">
-                            <img mat-card-image src="{{product.product_images}}" alt="Photo of a Shiba Inu">
+                            <img mat-card-image src="http://localhost:8000{{product.product_images}}" alt="Photo of a Shiba Inu">
                         </a>
                         <mat-card-header>
                             <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
