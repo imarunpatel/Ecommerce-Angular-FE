@@ -1,6 +1,7 @@
 ### Ecommerce App - Angular
 
-An eCommerce web app built with **Angular Framework**. It includes features like:
+An eCommerce web app built with **Angular Framework**. 
+Features of this this project are:
 * Authentication
 * Showing Dynamic Product and Product description
 * We can also add the product to the cart and view the cart Items
