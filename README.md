@@ -1,4 +1,6 @@
 # Ecommerce App - Angular
 
-<img src="src/assets/screenshots/Home.png" width="50%">
-<img src="src/assets/screenshots/Home2.png" width="50%">
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](src/assets/screenshots/Home.png)  |  ![](src/assets/screenshots/Home2.png)
